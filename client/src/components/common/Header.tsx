@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { ProfileMenu } from "@/components/common/ProfileMenu";
+import { NotificationMenu } from "@/components/common/NotificationMenu";
 import { Employee } from "@/types/Employee";
 
 interface HeaderProps {
@@ -24,8 +25,9 @@ const employee: Employee = {
 };
 
 export function Header({ onSidebarToggle }: HeaderProps) {
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [notificationAnchorEl, setNotificationAnchorEl] =
+    useState<null | HTMLElement>(null);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +35,14 @@ export function Header({ onSidebarToggle }: HeaderProps) {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleNotificationMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setNotificationAnchorEl(event.currentTarget);
+  };
+
+  const handleNotificationMenuClose = () => {
+    setNotificationAnchorEl(null);
   };
 
   return (
@@ -68,6 +78,7 @@ export function Header({ onSidebarToggle }: HeaderProps) {
               size="large"
               aria-label="show notifications"
               color="inherit"
+              onClick={handleNotificationMenuOpen}
             >
               <Badge badgeContent={4} color="error">
                 <NotificationsIcon />
@@ -95,6 +106,12 @@ export function Header({ onSidebarToggle }: HeaderProps) {
         isOpen={Boolean(anchorEl)}
         onClose={handleMenuClose}
         employee={employee}
+      />
+
+      <NotificationMenu
+        anchorEl={notificationAnchorEl}
+        isOpen={Boolean(notificationAnchorEl)}
+        onClose={handleNotificationMenuClose}
       />
     </>
   );

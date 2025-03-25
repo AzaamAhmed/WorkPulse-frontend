@@ -11,8 +11,6 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  // useMediaQuery,
-  // useTheme,
 } from "@mui/material";
 import {
   Home,
@@ -46,12 +44,12 @@ export function Sidebar({ mobileOpen, onDrawerToggle }: SidebarProps) {
       icon: <Home />,
     },
     {
-      title: "Employee Management",
+      title: "Employees",
       href: "/pages/employee-management",
       icon: <Users />,
     },
     {
-      title: "Project Management",
+      title: "Projects",
       href: "/pages/project-management",
       icon: <ClipboardList />,
     },
